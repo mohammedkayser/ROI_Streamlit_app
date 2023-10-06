@@ -170,7 +170,7 @@ end_date = st.date_input("End Date", min_value=datetime(2007, 1, 1), max_value=d
                          value=datetime(2023, 9, 29))
 investment_amount = st.number_input("Investment Amount", min_value=1)
 stock_selection = st.multiselect("Select Stocks",
-                                 ["Nifty", "JuniorBees", "MID150Bees", "LiquidBees", "GoldBees", "BankBees"])
+                                 ["Nifty", "JuniorBees", "Mid150Bees", "LiquidBees", "GoldBees", "BankBees"])
 calculation_type = st.selectbox("Calculation Type", ["SIP", "Lumpsum"])
 calculate_button = st.button("Calculate Returns")
 
