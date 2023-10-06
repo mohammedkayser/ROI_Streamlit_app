@@ -202,7 +202,10 @@ if calculate_button:
 # Display calculated returns and visualization if the button is clicked
 for i, df in enumerate(selected_dfs):
     st.subheader(f"Returns for {selected_stocks[i]}:")
-    st.write(df)
+
+    # Display the final return value neatly
+    final_return = df['Returns'].iloc[-1]
+    st.info(f"Final Return: {final_return:.2f} Rs")
 
     # Visualize the returns
     if calculate_button:
