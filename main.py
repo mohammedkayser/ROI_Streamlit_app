@@ -181,24 +181,32 @@ selected_stocks = []
 # Check if the Calculate Returns button is clicked
 if calculate_button:
     # Fetch data for selected stocks and perform calculations
-    if "Nifty" in stock_selection:
-        selected_dfs.append(calculate_sip_returns(investment_amount, start_date, end_date, nifty))
-        selected_stocks.append("Nifty")
-    if "JuniorBees" in stock_selection:
-        selected_dfs.append(calculate_sip_returns(investment_amount, start_date, end_date, junior))
-        selected_stocks.append("JuniorBees")
-    if "Mid150Bees" in stock_selection:
-        selected_dfs.append(calculate_sip_returns(investment_amount, start_date, end_date, mid))
-        selected_stocks.append("Mid150Bees")
-    if "LiquidBees" in stock_selection:
-        selected_dfs.append(calculate_sip_returns(investment_amount, start_date, end_date, liquid))
-        selected_stocks.append("LiquidBees")
-    if "GoldBees" in stock_selection:
-        selected_dfs.append(calculate_sip_returns(investment_amount, start_date, end_date, gold))
-        selected_stocks.append("GoldBees")
-    if "BankBees" in stock_selection:
-        selected_dfs.append(calculate_sip_returns(investment_amount, start_date, end_date, bank))
-        selected_stocks.append("BankBees")
+    for stock in stock_selection:
+        if stock == "Nifty":
+            df = calculate_sip_returns(investment_amount, start_date, end_date, nifty) if calculation_type == "SIP" else calculate_lumpsum_returns(investment_amount, start_date, end_date, nifty)
+            selected_dfs.append(df)
+            selected_stocks.append(stock)
+        elif stock == "JuniorBees":
+            df = calculate_sip_returns(investment_amount, start_date, end_date, junior) if calculation_type == "SIP" else calculate_lumpsum_returns(investment_amount, start_date, end_date, junior)
+            selected_dfs.append(df)
+            selected_stocks.append(stock)
+        elif stock == "Mid150Bees":
+            df = calculate_sip_returns(investment_amount, start_date, end_date, mid) if calculation_type == "SIP" else calculate_lumpsum_returns(investment_amount, start_date, end_date, mid)
+            selected_dfs.append(df)
+            selected_stocks.append(stock)
+        elif stock == "LiquidBees":
+            df = calculate_sip_returns(investment_amount, start_date, end_date, liquid) if calculation_type == "SIP" else calculate_lumpsum_returns(investment_amount, start_date, end_date, liquid)
+            selected_dfs.append(df)
+            selected_stocks.append(stock)
+        elif stock == "GoldBees":
+            df = calculate_sip_returns(investment_amount, start_date, end_date, gold) if calculation_type == "SIP" else calculate_lumpsum_returns(investment_amount, start_date, end_date, gold)
+            selected_dfs.append(df)
+            selected_stocks.append(stock)
+        elif stock == "BankBees":
+            df = calculate_sip_returns(investment_amount, start_date, end_date, bank) if calculation_type == "SIP" else calculate_lumpsum_returns(investment_amount, start_date, end_date, bank)
+            selected_dfs.append(df)
+            selected_stocks.append(stock)
+
 # Display calculated returns and visualization if the button is clicked
 for i, df in enumerate(selected_dfs):
     st.subheader(f"Returns for {selected_stocks[i]}:")
