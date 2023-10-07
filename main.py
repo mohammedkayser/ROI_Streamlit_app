@@ -222,7 +222,7 @@ for i, df in enumerate(selected_dfs):
         # Generate a file name with start and end dates
         start_date_str = start_date.strftime("%Y-%m-%d")
         end_date_str = end_date.strftime("%Y-%m-%d")
-        file_name = f"{selected_stocks[i]}_returns_{start_date_str}_to_{end_date_str}.csv"
+        file_name = f"{selected_stocks[i]}_{calculation_type}_returns_{start_date_str}_to_{end_date_str}.csv"
 
         # Button to download the entire DataFrame as a CSV file with the custom file name
     csv_export_button = st.download_button(
