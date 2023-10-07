@@ -213,13 +213,27 @@ for i, df in enumerate(selected_dfs):
 
     # Display the final return value neatly
     final_return = df['Returns'].iloc[-1]
-    st.info(f"Final Return: {final_return:.2f} Rs")
+    st.info(f"Final Return: {final_return:.2f} Rs")    
+    
+    # Button to show full data using st.expander
+    with st.expander("See Full Data"):
+        st.write(df)  # Display the full DataFrame returns
+
+    # Button to download the entire DataFrame as a CSV file
+    csv_export_button = st.download_button(
+        label="Download CSV",
+        data=df.to_csv(index=False),
+        file_name=f"{selected_stocks[i]}_returns.csv",
+        key=f"{selected_stocks[i]}_csv",
+    )
 
     # Visualize the returns
-    if calculate_button:
-        if calculation_type == "SIP":
-            st.subheader(f"Visualization for {selected_stocks[i]}:")
-            visualize_sip_returns(df)
-        elif calculation_type == "Lumpsum":
-            st.subheader(f"Visualization for {selected_stocks[i]}:")
-            visualize_lumpsum_returns(df)
+    if calculation_type == "SIP":
+        st.subheader(f"Visualization for {selected_stocks[i]}:")
+        visualize_sip_returns(df)
+    elif calculation_type == "Lumpsum":
+        st.subheader(f"Visualization for {selected_stocks[i]}:")
+        visualize_lumpsum_returns(df)
+
+    # Display the download button
+    st.markdown(csv_export_button, unsafe_allow_html=True)
