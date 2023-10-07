@@ -219,11 +219,16 @@ for i, df in enumerate(selected_dfs):
     with st.expander("See Full Data"):
         st.write(df)  # Display the full DataFrame returns
 
-    # Button to download the entire DataFrame as a CSV file
+        # Generate a file name with start and end dates
+        start_date_str = start_date.strftime("%Y-%m-%d")
+        end_date_str = end_date.strftime("%Y-%m-%d")
+        file_name = f"{selected_stocks[i]}_returns_{start_date_str}_to_{end_date_str}.csv"
+
+        # Button to download the entire DataFrame as a CSV file with the custom file name
     csv_export_button = st.download_button(
         label="Download CSV",
         data=df.to_csv(index=False),
-        file_name=f"{selected_stocks[i]}_returns.csv",
+        file_name=file_name,
         key=f"{selected_stocks[i]}_csv",
     )
 
